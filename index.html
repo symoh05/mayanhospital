@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayan Lifestyle Hospital - Pharmacy & Healthcare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #6a5acd;  /* Slate blue */
+            --secondary: #48d1cc;  /* Medium turquoise */
+            --accent: #ff69b4;  /* Hot pink */
+            --dark: #2f4f4f;  /* Dark slate gray */
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --gray: #778899;  /* Light slate gray */
+            --text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: #5f4bb6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #3fbdb8;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #e55fa0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 22px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Search Modal */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-container {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--light);
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary);
+        }
+
+        .search-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .search-results {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-results .result-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--light);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-results .result-item:hover {
+            background-color: var(--light);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: var(--white);
+            z-index: 2000;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .mobile-menu-close i {
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav ul li a:hover {
+            background-color: rgba(106, 90, 205, 0.1);
+            color: var(--primary);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            max-width: 500px;
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .slide-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .slider-controls button {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 15px;
+        }
+
+        .slider-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        /* Medicine Categories */
+        .medicine-categories {
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+
+        .category-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--light);
+        }
+
+        .category-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .category-scroll::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        .category-scroll::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 6px;
+        }
+
+        .category-card {
+            flex: 0 0 auto;
+            width: 180px;
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .category-card h3 {
+            padding: 12px;
+            text-align: center;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        /* Product Sections */
+        .product-section {
+            padding: 30px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .view-all:hover {
+            color: var(--secondary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .current-price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .add-to-cart {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .add-to-cart i {
+            background-color: var(--secondary);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart i:hover {
+            background-color: #3fbdb8;
+            transform: scale(1.1);
+        }
+
+        /* Promotional Banners */
+        .promo-banner, .consultation-banner {
+            padding: 40px 0;
+            margin: 30px 0;
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+
+        .promo-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .consultation-banner {
+            background-image: linear-gradient(rgba(72, 209, 204, 0.8), rgba(72, 209, 204, 0.8)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .banner-content {
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .banner-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .banner-content p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 40px 0 0;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .contact-info i {
+            color: var(--secondary);
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            text-align: center;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .hero-banner {
+                height: 450px;
+            }
+
+            .slide-content h2 {
+                font-size: 36px;
+            }
+
+            .category-card {
+                width: 200px;
+            }
+
+            .category-card img {
+                height: 140px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .hero-banner {
+                height: 500px;
+            }
+
+            .slide-content h2 {
+                font-size: 42px;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .slider-controls button {
+                width: 35px;
+                height: 35px;
+                margin: 0 10px;
+            }
+
+            .banner-content h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/150x50?text=Mayan+Lifestyle" alt="Mayan Lifestyle Hospital Logo">
+                </div>
+                <div class="header-icons">
+                    <div class="search-icon"><i class="fas fa-search"></i></div>
+                    <div class="account-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal">
+        <div class="search-container">
+            <input type="text" placeholder="Search medicines, products, brands..." class="search-input">
+            <button class="search-close"><i class="fas fa-times"></i></button>
+            <div class="search-results">
+                <div class="result-item">Paracetamol 500mg Tablets</div>
+                <div class="result-item">Vitamin C 1000mg Effervescent</div>
+                <div class="result-item">Ibuprofen 400mg Tablets</div>
+                <div class="result-item">Multivitamin with Iron</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-close"><i class="fas fa-times"></i></div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pharmacy</a></li>
+                <li><a href="#">Hospital Services</a></li>
+                <li><a href="#">Doctors</a></li>
+                <li><a href="#">Health Packages</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Banner Slider -->
+        <section class="hero-banner">
+            <div class="slider">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <div class="slide-content">
+                        <h2>Quality Healthcare Services</h2>
+                        <p>Comprehensive medical care with compassion</p>
+                        <a href="#" class="btn btn-accent">Learn More</a>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <div class="slide-content">
+                        <h2>Pharmacy Discounts</h2>
+                        <p>Up to 30% off on selected medicines</p>
+                        <a href="#" class="btn btn-accent">Shop Now</a>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <div class="slide-content">
+                        <h2>Book a Consultation</h2>
+                        <p>Meet our specialist doctors</p>
+                        <a href="#" class="btn btn-accent">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </section>
+
+        <!-- Medicine Categories -->
+        <section class="medicine-categories">
+            <div class="container">
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="category-scroll">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Prescription Medicines">
+                        <h3>Prescription Medicines</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Wellness Products">
+                        <h3>Wellness Products</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Personal Care">
+                        <h3>Personal Care</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Mother & Baby">
+                        <h3>Mother & Baby</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Medical Devices">
+                        <h3>Medical Devices</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Vitamins & Supplements">
+                        <h3>Vitamins & Supplements</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">New Arrivals</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="discount-badge">21% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Paracetamol" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Paracetamol 500mg Tablets (100 tablets)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 1,200</span>
+                                <span class="current-price">KSh 950</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">20% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Vitamin C" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Vitamin C 1000mg Effervescent (20 tablets)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 1,500</span>
+                                <span class="current-price">KSh 1,200</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Ibuprofen" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Ibuprofen 400mg Tablets (30 tablets)</h3>
+                            <div class="product-price">
+                                <span class="current-price">KSh 800</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">20% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Multivitamin" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Multivitamin with Iron (60 capsules)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 2,500</span>
+                                <span class="current-price">KSh 2,000</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">25% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Hand Sanitizer" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Antibacterial Hand Sanitizer 500ml</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 1,200</span>
+                                <span class="current-price">KSh 900</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Banner -->
+        <section class="promo-banner">
+            <div class="container">
+                <div class="banner-content">
+                    <h2>Special Health Checkup Package</h2>
+                    <p>Get 20% off on our comprehensive health screening package</p>
+                    <a href="#" class="btn btn-secondary">Book Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Brands -->
+        <section class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Top Brands</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Blood Pressure Monitor" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Blood Pressure Monitor - Digital</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 4,500</span>
+                                <span class="current-price">KSh 3,800</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Diabetes Test" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Diabetes Test Strips (50 count)</h3>
+                            <div class="product-price">
+                                <span class="current-price">KSh 3,500</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">25% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Pregnancy Test" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Pregnancy Test Kit (2 tests)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 600</span>
+                                <span class="current-price">KSh 450</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Thermometer" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Digital Thermometer - Fast Reading</h3>
+                            <div class="product-price">
+                                <span class="current-price">KSh 1,200</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">15% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="First Aid Kit" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Comprehensive First Aid Kit</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 3,800</span>
+                                <span class="current-price">KSh 3,230</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Special Offers</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="discount-badge">30% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Vitamin D" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Vitamin D3 2000IU (90 capsules)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 2,400</span>
+                                <span class="current-price">KSh 1,680</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">25% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Omega 3" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Omega 3 Fish Oil 1000mg (120 capsules)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 3,200</span>
+                                <span class="current-price">KSh 2,400</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">20% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Probiotics" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Probiotics 10 Billion CFU (60 capsules)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 2,800</span>
+                                <span class="current-price">KSh 2,240</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">15% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Magnesium" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Magnesium Citrate 400mg (90 tablets)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 2,100</span>
+                                <span class="current-price">KSh 1,785</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="discount-badge">40% OFF</div>
+                        <img src="https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Vitamin B Complex" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-name">Vitamin B Complex (100 tablets)</h3>
+                            <div class="product-price">
+                                <span class="original-price">KSh 1,500</span>
+                                <span class="current-price">KSh 900</span>
+                            </div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consultation Banner -->
+        <section class="consultation-banner">
+            <div class="container">
+                <div class="banner-content">
+                    <h2>Need Medical Advice?</h2>
+                    <p>Book a consultation with our expert doctors</p>
+                    <a href="consultation.html" class="btn">Book Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Mayan Lifestyle Hospital</h3>
+                    <p>Providing quality healthcare services and pharmacy solutions to the Kiambu community since 2010.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pharmacy</a></li>
+                        <li><a href="#">Hospital Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Health Packages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">General Medicine</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Gynecology</a></li>
+                        <li><a href="#">Laboratory Services</a></li>
+                        <li><a href="#">Vaccinations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Main Street, Kiambu Town</li>
+                        <li><i class="fas fa-phone"></i> +254 700 123456</li>
+                        <li><i class="fas fa-envelope"></i> info@mayanlifestyle.co.ke</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 8:00 AM - 8:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mayan Lifestyle Hospital. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+            
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+
+            // Search Modal
+            const searchIcon = document.querySelector('.search-icon');
+            const searchModal = document.querySelector('.search-modal');
+            const searchClose = document.querySelector('.search-close');
+            
+            searchIcon.addEventListener('click', function() {
+                searchModal.style.display = 'flex';
+                document.querySelector('.search-input').focus();
+            });
+            
+            searchClose.addEventListener('click', function() {
+                searchModal.style.display = 'none';
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === searchModal) {
+                    searchModal.style.display = 'none';
+                }
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+
+            // Hero Slider
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev-slide');
+            const nextBtn = document.querySelector('.next-slide');
+            let currentSlide = 0;
+
+            function goToSlide(slideIndex) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = (slideIndex + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Add click event to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
+
+            // Auto slide change
+            let slideInterval = setInterval(nextSlide, 5000);
+
+            // Pause on hover
+            const slider = document.querySelector('.slider');
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+
+            // Add to cart functionality
+            let cartCount = 0;
+            const cartCountElement = document.querySelector('.cart-count');
+            
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('fa-cart-plus')) {
+                    cartCount++;
+                    cartCountElement.textContent = cartCount;
+                    
+                    // Add animation
+                    e.target.classList.add('added');
+                    setTimeout(() => {
+                        e.target.classList.remove('added');
+                    }, 1000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>9
